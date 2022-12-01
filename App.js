@@ -7,7 +7,7 @@ const Cat = (props) => {
   return (
     <View>
       <Text>
-        I am not {props.name}, and I am {isHungry ? "hungry" : "full"}!
+        I am not vegan {props.name}, and I am {isHungry ? "hungry" : "full"}!
       </Text>
       <Button
         onPress={() => {
