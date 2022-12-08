@@ -1,28 +1,63 @@
-import React from 'react';
-import { StyleSheet, Button, View, SafeAreaView, Text, Alert, Dimensions } from 'react-native';
-const App = () => (
-    <View style={styles.container1}>
-    <View style={styles.button} 
-      Button
-      title="1"
-      onPress={() => Alert.alert('Simple Button pressed')} />
-    </View>
-);
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+
+export default function App() {
+  return (
+    <>
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.square} >
+          <Text style={styles.text}>1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.square} >
+          <Text style={styles.text}>2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.square} >
+          <Text style={styles.text}>3</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.square} >
+          <Text style={styles.text}>4</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.square} >
+          <Text style={styles.text}>5</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.square} >
+          <Text style={styles.text}>6</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.square} >
+          <Text style={styles.text}>7</Text>
+        </TouchableOpacity><TouchableOpacity style={styles.square} >
+          <Text style={styles.text}>8</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.square} >
+          <Text style={styles.text}>9</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.square} >
+          <Text style={styles.text}>0</Text>
+        </TouchableOpacity>
+      </View>
+    </>
+  );
+}
 
 const styles = StyleSheet.create({
-  container1: {
-    flex: 1,
-    margin: 5,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    borderColor: 'gray',
+  container: {
+    backgroundColor: "#7CA1B4",
+    flexWrap: "wrap",
+    alignItems: "center", // ignore this - we'll come back to it
+    justifyContent: "center", // ignore this - we'll come back to it
+    flexDirection: "row",
+    borderColor: "black",
     borderWidth: 2,
-    top: 1,
+    height: "60%",
   },
-  button: {
-    flex: 1,
-    width: 100,
+  square: {
+    backgroundColor: "#7cb48f",
+    width: "26%",
+    height: "21%",
+    margin: 7,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text:{
+    fontSize: 30,
   }
 });
-
-export default App;
