@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   square: {
     backgroundColor: "#AA8855",
-    width: "21%",
+    width: "20%",
     height: "16%",
     margin: 8,
     justifyContent: "center",
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   square0: {
     backgroundColor: "#AA8855",
-    width: "46%",
+    width: "44%",
     height: "16%",
     margin: 8,
     justifyContent: "center",
