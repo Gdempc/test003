@@ -1,4 +1,5 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, HandleOperationPress, handleNumberPress } from "react-native";
+import {useState} from 'react';
 
 export default function App() {
   return (
@@ -11,7 +12,7 @@ export default function App() {
     </View>
       <View style={styles.container}>
         
-        <TouchableOpacity style={styles.square}>
+        <TouchableOpacity onPress={() => HandleNumberPress("1")} style={styles.square}>
           <Text style={styles.text}>1</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.square} >
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
   },
   squareof: {
     backgroundColor: "#775522",
-    width: "21%",
+    width: "20%",
     height: "16%",
     borderRadius: 30,
     justifyContent: "center",
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
     width: 200,
     height:100,
     top:20,
-    left:200,
+    left:185,
     borderRadius:40,
   },
   mathbox:{
