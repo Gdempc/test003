@@ -2,72 +2,75 @@ import { StyleSheet, View, Text, TouchableOpacity, HandleOperationPress, handleN
 import {useState} from 'react';
 
 export default function App() {
+
+  const [count, setCount] = useState(0);
+  const onPress = () => setCount(prevCount => prevCount + 1);
   return (
     <>
     <View style={styles.container2}>
-      <View style={styles.answerbox}></View>
-      <View style={styles.mathbox}></View>
-
-
+      <View style={styles.mathbox}>
+      <Text>Count: {count}</Text>
+      </View>
     </View>
+
       <View style={styles.container}>
         
-        <TouchableOpacity onPress={() => HandleNumberPress("1")} style={styles.square}>
-          <Text style={styles.text}>1</Text>
+        <TouchableOpacity onPress={(onPress)} style={styles.square}>
+          <Text style={styles.text} value="1">1</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} >
+        <TouchableOpacity style={styles.square} value="2">
           <Text style={styles.text}>2</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} >
+        <TouchableOpacity style={styles.square} value="3">
           <Text style={styles.text}>3</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} >
+        <TouchableOpacity style={styles.squareof} value="*" >
           <Text style={styles.text}>*</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} >
+        <TouchableOpacity style={styles.square} value="4">
           <Text style={styles.text}>4</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} >
+        <TouchableOpacity style={styles.square} value="5">
           <Text style={styles.text}>5</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} >
+        <TouchableOpacity style={styles.square} value="6">
           <Text style={styles.text}>6</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} >
+        <TouchableOpacity style={styles.squareof} value="/">
           <Text style={styles.text}>/</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} >
+        <TouchableOpacity style={styles.square} value="7">
           <Text style={styles.text}>7</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} >
+        <TouchableOpacity style={styles.square} value="8">
           <Text style={styles.text}>8</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} >
+        <TouchableOpacity style={styles.square} value="9">
           <Text style={styles.text}>9</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.squareof} >
+        <TouchableOpacity style={styles.squareof} value="+">
           <Text style={styles.text}>+</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square0} >
+        <TouchableOpacity style={styles.square0} value="0">
           <Text style={styles.text}>0</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} >
+        <TouchableOpacity style={styles.square} value=",">
           <Text style={styles.text}>,</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} >
+        <TouchableOpacity style={styles.squareof} value="-">
           <Text style={styles.text}>-</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} >
+        <TouchableOpacity style={styles.squareof} value="AC">
           <Text style={styles.text}>AC</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} >
+        <TouchableOpacity style={styles.squareof} value="C">
           <Text style={styles.text}>C</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} >
+        <TouchableOpacity style={styles.squareof} value="%">
           <Text style={styles.text}>%</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} >
+        <TouchableOpacity style={styles.squareof} value="=">
           <Text style={styles.text}>=</Text>
         </TouchableOpacity>
       </View>
@@ -130,7 +133,7 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: "#B0B0B0",
     width: "95%",
-    height:100,
+    height:"60%",
     top:40,
     borderRadius:20,
   },
