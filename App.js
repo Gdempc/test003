@@ -4,19 +4,46 @@ import {useState} from 'react';
 export default function App() {
 
   const [count, setCount] = useState('');
-  const [result, setResult] = useState('');
-  const [operation, setOperation] = useState(null);
+  const [number1, setNumber1] = useState('');
+  const [number2, setNumber2] = useState('');
+  const [operation, setOperation] = useState('');
 
-  const buttonClick = (text) => {
-    setResult(result + text);
+  const clearClick = () => {
+    setNumber1('');
+    setNumber2('');
+    setOperation('');
   }
+  
+  const buttonClick = (text) => {
+    if(operation == ''){
+      setNumber1(number1 + text);
+    } else{
+      setNumber2(number2 + text);
+    }
+
+  }
+  
+  const operationClick = (text) => {
+    setOperation(text);
+  }
+  
+  const equalsClick = () => {
+    if(operation == '+'){
+      setNumber1(parseFloat(number1)+parseFloat(number2));
+      setNumber2('');
+      setOperation('');
+    }
+  }
+
+
+
 
 
   return(
     <>
     <View style={styles.container2}>
       <View style={styles.mathbox}>
-      <Text style={styles.textCalc}>{result}</Text>
+      <Text style={styles.textCalc}>{number1.toString()+operation+number2.toString()}</Text>
       </View>
     </View>
 
@@ -31,7 +58,7 @@ export default function App() {
         <TouchableOpacity onPress={()=>{buttonClick(3)}} style={styles.square} value="3">
           <Text style={styles.text}>3</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} value="*" >
+        <TouchableOpacity onPress={()=>{operationClick('*')}} style={styles.squareof} value="*" >
           <Text style={styles.text}>*</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{buttonClick(4)}}style={styles.square} value="4">
@@ -43,7 +70,7 @@ export default function App() {
         <TouchableOpacity onPress={()=>{buttonClick(6)}}style={styles.square} value="6">
           <Text style={styles.text}>6</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} value="/">
+        <TouchableOpacity onPress={()=>{operationClick('/')}} style={styles.squareof} value="/">
           <Text style={styles.text}>/</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{buttonClick(7)}}style={styles.square} value="7">
@@ -56,7 +83,7 @@ export default function App() {
           <Text style={styles.text}>9</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.squareof} value="+">
+        <TouchableOpacity onPress={()=>{operationClick('+')}} style={styles.squareof} value="+">
           <Text style={styles.text}>+</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{buttonClick(0)}}style={styles.square0} value="0">
@@ -65,19 +92,19 @@ export default function App() {
         <TouchableOpacity style={styles.square} value=",">
           <Text style={styles.text}>,</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} value="-">
+        <TouchableOpacity onPress={()=>{operationClick('-')}} style={styles.squareof} value="-">
           <Text style={styles.text}>-</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>{buttonClick(AC)}} style={styles.squareof} value="AC">
+        <TouchableOpacity style={styles.squareof} value="AC">
           <Text style={styles.text}>AC</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} value="C">
+        <TouchableOpacity onPress={()=>{clearClick()}} style={styles.squareof} value="C">
           <Text style={styles.text}>C</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} value="%">
+        <TouchableOpacity onPress={()=>{operationClick('%')}} style={styles.squareof} value="%">
           <Text style={styles.text}>%</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} value="=">
+        <TouchableOpacity onPress={()=>{equalsClick()}} style={styles.squareof} value="=">
           <Text style={styles.text}>=</Text>
         </TouchableOpacity>
       </View>
