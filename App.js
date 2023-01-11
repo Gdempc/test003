@@ -3,56 +3,63 @@ import {useState} from 'react';
 
 export default function App() {
 
-  const [count, setCount] = useState(0);
-  const onPress = () => setCount(prevCount => prevCount + 1);
-  return (
+  const [count, setCount] = useState('');
+  const [result, setResult] = useState('');
+  const [operation, setOperation] = useState(null);
+
+  const buttonClick = (text) => {
+    setResult(result + text);
+  }
+
+
+  return(
     <>
     <View style={styles.container2}>
       <View style={styles.mathbox}>
-      <Text>Count: {count}</Text>
+      <Text style={styles.textCalc}>{result}</Text>
       </View>
     </View>
 
       <View style={styles.container}>
         
-        <TouchableOpacity onPress={(onPress)} style={styles.square}>
+        <TouchableOpacity onPress={()=>{buttonClick(1)}} style={styles.square}>
           <Text style={styles.text} value="1">1</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} value="2">
+        <TouchableOpacity onPress={()=>{buttonClick(2)}} style={styles.square} value="2">
           <Text style={styles.text}>2</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} value="3">
+        <TouchableOpacity onPress={()=>{buttonClick(3)}} style={styles.square} value="3">
           <Text style={styles.text}>3</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.squareof} value="*" >
           <Text style={styles.text}>*</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} value="4">
+        <TouchableOpacity onPress={()=>{buttonClick(4)}}style={styles.square} value="4">
           <Text style={styles.text}>4</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} value="5">
+        <TouchableOpacity onPress={()=>{buttonClick(5)}}style={styles.square} value="5">
           <Text style={styles.text}>5</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} value="6">
+        <TouchableOpacity onPress={()=>{buttonClick(6)}}style={styles.square} value="6">
           <Text style={styles.text}>6</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.squareof} value="/">
           <Text style={styles.text}>/</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} value="7">
+        <TouchableOpacity onPress={()=>{buttonClick(7)}}style={styles.square} value="7">
           <Text style={styles.text}>7</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} value="8">
+        <TouchableOpacity onPress={()=>{buttonClick(8)}}style={styles.square} value="8">
           <Text style={styles.text}>8</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} value="9">
+        <TouchableOpacity onPress={()=>{buttonClick(9)}}style={styles.square} value="9">
           <Text style={styles.text}>9</Text>
         </TouchableOpacity>
         
         <TouchableOpacity style={styles.squareof} value="+">
           <Text style={styles.text}>+</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square0} value="0">
+        <TouchableOpacity onPress={()=>{buttonClick(0)}}style={styles.square0} value="0">
           <Text style={styles.text}>0</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.square} value=",">
@@ -61,7 +68,7 @@ export default function App() {
         <TouchableOpacity style={styles.squareof} value="-">
           <Text style={styles.text}>-</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} value="AC">
+        <TouchableOpacity onPress={()=>{buttonClick(AC)}} style={styles.squareof} value="AC">
           <Text style={styles.text}>AC</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.squareof} value="C">
@@ -114,8 +121,13 @@ const styles = StyleSheet.create({
     margin:8,
   },
   text:{
-    fontSize: 30,
+    fontSize: 35,
     color: "rgb(232,209,140)"
+  },
+  textCalc:{
+    marginLeft: 5,  
+    fontSize: 30,
+    color: "black"
   },
   container2: {
     height: "40%",
