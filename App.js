@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, TouchableOpacity, HandleOperationPress, handleN
 import {useState} from 'react';
 
 export default function App() {
-  
+  const [dot, setDot] = useState('');
   const [lastOp, setLastOp] = useState('');
   const [number1, setNumber1] = useState('');
   const [number2, setNumber2] = useState('');
@@ -13,40 +13,64 @@ export default function App() {
     setNumber2('');
     setOperation('');
     setLastOp('');
+    setDot('');
   }
   const bClick = () => {
+    if(lastOp != '='){
     if(operation == ''){
+      
       if(number1!=''){
-      setNumber1(number1.substring(0, number1.length - 1));}
+      setNumber1(number1.toString().substring(0, number1.length - 1));}
     } else{
       if(number2!=''){
-      setNumber2(number2.substring(0, number2.length - 1));}
+      setNumber2(number2.toString().substring(0, number2.length - 1));}
       else if(number2 == ''){
         setOperation('');
+        setDot('.');
       }
     }
   }
+}
   
   const buttonClick = (text) => {
     if(lastOp != '='){
     if(operation == ''){
+      
+      
+      if(number1 == '' && text =='.'){
+        setNumber1('0.');
+      }
+      else if(dot =='' && text =='.'){
+      setDot('.');
       setNumber1(number1 + text);
+      
+    }else if(text != '.')setNumber1(number1 + text);
     } else{
-      setNumber2(number2 + text);
+      
+      if(number2 == '' && text =='.'){
+        setNumber2('0.');
+      }
+      else if(dot =='' && text =='.'){
+        setDot('.');
+        setNumber2(number2 + text);
+
+      }else if(text != '.')setNumber2(number2 + text);
     }
   }
   }
   
   const operationClick = (text) => {
     setLastOp('');
-    if(text == '%'){
+    setDot('');
+    if(number1!=''){
+      if(text == '%'){
       if(operation==''){
       setNumber1(parseFloat(number1)/100.000);
     }
       else{
         setNumber2(parseFloat(number2)/100.000);
       }
-    }else setOperation(text);
+    }else setOperation(text);}
   }
   
   const equalsClick = () => {
