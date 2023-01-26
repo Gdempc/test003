@@ -2,8 +2,8 @@ import { StyleSheet, View, Text, TouchableOpacity, HandleOperationPress, handleN
 import {useState} from 'react';
 
 export default function App() {
-
-  const [count, setCount] = useState('');
+  
+  const [lastOp, setLastOp] = useState('');
   const [number1, setNumber1] = useState('');
   const [number2, setNumber2] = useState('');
   const [operation, setOperation] = useState('');
@@ -12,24 +12,59 @@ export default function App() {
     setNumber1('');
     setNumber2('');
     setOperation('');
+    setLastOp('');
+  }
+  const bClick = () => {
+    if(operation == ''){
+      if(number1!=''){
+      setNumber1(number1.substring(0, number1.length - 1));}
+    } else{
+      if(number2!=''){
+      setNumber2(number2.substring(0, number2.length - 1));}
+      else if(number2 == ''){
+        setOperation('');
+      }
+    }
   }
   
   const buttonClick = (text) => {
+    if(lastOp != '='){
     if(operation == ''){
       setNumber1(number1 + text);
     } else{
       setNumber2(number2 + text);
     }
-
+  }
   }
   
   const operationClick = (text) => {
-    setOperation(text);
+    setLastOp('');
+    if(text == '%'){
+      if(operation==''){
+      setNumber1(parseFloat(number1)/100.000);
+    }
+      else{
+        setNumber2(parseFloat(number2)/100.000);
+      }
+    }else setOperation(text);
   }
   
   const equalsClick = () => {
+    setLastOp('=');
     if(operation == '+'){
       setNumber1(parseFloat(number1)+parseFloat(number2));
+      setNumber2('');
+      setOperation('');
+    }else if(operation == '-'){
+      setNumber1(parseFloat(number1)-parseFloat(number2));
+      setNumber2('');
+      setOperation('');
+    }else if(operation == '/'){
+      setNumber1(parseFloat(number1)/parseFloat(number2));
+      setNumber2('');
+      setOperation('');
+    }else if(operation == '*'){
+      setNumber1(parseFloat(number1)*parseFloat(number2));
       setNumber2('');
       setOperation('');
     }
@@ -89,14 +124,14 @@ export default function App() {
         <TouchableOpacity onPress={()=>{buttonClick(0)}}style={styles.square0} value="0">
           <Text style={styles.text}>0</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} value=",">
-          <Text style={styles.text}>,</Text>
+        <TouchableOpacity onPress={()=>{buttonClick('.')}}style={styles.square} value=",">
+          <Text style={styles.text}>.</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{operationClick('-')}} style={styles.squareof} value="-">
           <Text style={styles.text}>-</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.squareof} value="AC">
-          <Text style={styles.text}>AC</Text>
+        <TouchableOpacity onPress={()=>{bClick()}}style={styles.squareof} value="AC">
+          <Text style={styles.text}>B</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{clearClick()}} style={styles.squareof} value="C">
           <Text style={styles.text}>C</Text>
