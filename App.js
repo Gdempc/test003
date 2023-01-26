@@ -2,7 +2,6 @@ import { StyleSheet, View, Text, TouchableOpacity, HandleOperationPress, handleN
 import {useState} from 'react';
 
 export default function App() {
-  const [dot, setDot] = useState('');
   const [lastOp, setLastOp] = useState('');
   const [number1, setNumber1] = useState('');
   const [number2, setNumber2] = useState('');
@@ -13,7 +12,6 @@ export default function App() {
     setNumber2('');
     setOperation('');
     setLastOp('');
-    setDot('');
   }
   const bClick = () => {
     if(lastOp != '='){
@@ -26,7 +24,6 @@ export default function App() {
       setNumber2(number2.toString().substring(0, number2.length - 1));}
       else if(number2 == ''){
         setOperation('');
-        setDot('.');
       }
     }
   }
@@ -34,34 +31,26 @@ export default function App() {
   
   const buttonClick = (text) => {
     if(lastOp != '='){
-    if(operation == ''){
-      
-      
-      if(number1 == '' && text =='.'){
-        setNumber1('0.');
-      }
-      else if(dot =='' && text =='.'){
-      setDot('.');
+    if(operation == ''){ 
+      if(text == '.'){
+        if(number1 ==''){setNumber1('0.');}
+      else if(!number1.toString().includes('.')){
       setNumber1(number1 + text);
-      
-    }else if(text != '.')setNumber1(number1 + text);
-    } else{
-      
-      if(number2 == '' && text =='.'){
-        setNumber2('0.');
       }
-      else if(dot =='' && text =='.'){
-        setDot('.');
-        setNumber2(number2 + text);
-
-      }else if(text != '.')setNumber2(number2 + text);
-    }
+    }else setNumber1(number1 + text);
+      
+    }else if(text == '.'){
+      if(number2 ==''){setNumber2('0.');}
+      else if(!number2.toString().includes('.')){
+      setNumber2(number2 + text);
+      }
+    }else setNumber2(number2 + text);
+    
   }
   }
   
   const operationClick = (text) => {
     setLastOp('');
-    setDot('');
     if(number1!=''){
       if(text == '%'){
       if(operation==''){
