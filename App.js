@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, TouchableOpacity, HandleOperationPress, handleNumberPress } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity} from "react-native";
 import {useState} from 'react';
 
 export default function App() {
@@ -31,26 +31,35 @@ export default function App() {
   
   const buttonClick = (text) => {
     if(lastOp != '='){
-    if(operation == ''){ 
-      if(text == '.'){
-        if(number1 ==''){setNumber1('0.');}
-      else if(!number1.toString().includes('.')){
-      setNumber1(number1 + text);
-      }
-    }else setNumber1(number1 + text);
-      
-    }else if(text == '.'){
+    if(operation == ''){
+      if(text =='0' && number1 ==''){
+        setNumber1('0.');
+  }else {
+    if(text == '.'){
+    if(number1 ==''){setNumber1('0.');}
+  else if(!number1.toString().includes('.')){
+    setNumber1(number1 + text);
+}
+}else setNumber1(number1 + text);
+}
+
+
+    }else if(text =='0' && number2 ==''){
+        setNumber2('0.');}
+    else {if(text == '.'){
       if(number2 ==''){setNumber2('0.');}
       else if(!number2.toString().includes('.')){
       setNumber2(number2 + text);
       }
-    }else setNumber2(number2 + text);
+    }else setNumber2(number2 + text);}
+    
+    
     
   }
   }
   
   const operationClick = (text) => {
-    setLastOp('');
+    setLastOp(text);
     if(number1!=''){
       if(text == '%'){
       if(operation==''){
@@ -59,7 +68,17 @@ export default function App() {
       else{
         setNumber2(parseFloat(number2)/100.000);
       }
-    }else setOperation(text);}
+    }else if(operation =='')
+    {
+      setOperation(text);
+    }
+  }
+    else if(text == '-'){
+      setNumber1(text + number1);
+    }
+    if(number2=='' && text == '-' && operation != ''){
+      setNumber2('-');
+    }
   }
   
   const equalsClick = () => {
@@ -98,7 +117,7 @@ export default function App() {
       <View style={styles.container}>
         
         <TouchableOpacity onPress={()=>{buttonClick(1)}} style={styles.square}>
-          <Text style={styles.text} value="1">1</Text>
+          <Text style={styles.text}>1</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{buttonClick(2)}} style={styles.square} value="2">
           <Text style={styles.text}>2</Text>
